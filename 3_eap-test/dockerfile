@@ -1,0 +1,18 @@
+#TAKE THE STANDARD EAP7 CONTAINER
+FROM eap7
+
+USER jboss
+
+#COPY OVER THE STANDALONE.XML WHICH DEFINES THE POSTGRES DATASOURCES
+COPY test-standalone.xml /opt/eap7/standalone/configuration/standalone.xml
+
+#COPY OVER THE POSTGRESSQL JDBC DRIVER
+RUN mkdir /opt/eap7/modules/org
+RUN mkdir /opt/eap7/modules/org/postgresql
+RUN mkdir /opt/eap7/modules/org/postgresql/main
+COPY postgresql-driver-module.xml /opt/eap7/modules/org/postgresql/main/module.xml
+COPY postgresql-42.0.0.jar /opt/eap7/modules/org/postgresql/main/
+
+
+
+ENTRYPOINT $JBOSS_HOME/bin/standalone.sh -b 0.0.0.0
