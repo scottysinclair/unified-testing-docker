@@ -111,24 +111,30 @@
                 <level name="WARN"/>
             </logger>
             <logger category="org.postgresql">
-                <level name="TRACE"/>
+                <level name="INFO"/>
             </logger>
             <logger category="java.sql">
-                <level name="TRACE"/>
+                <level name="DEBUG"/>
             </logger>
             <logger category="org.hibernate">
-                <level name="TRACE"/>
+                <level name="DEBUG"/>
             </logger>
             <logger category="org.springframework.transaction">
-                <level name="TRACE"/>
-            </logger>
-            <root-logger>
                 <level name="DEBUG"/>
+            </logger>
+	    <root-logger>
+		<level name="DEBUG"/>
                 <handlers>
                     <handler name="CONSOLE"/>
                     <handler name="FILE"/>
                 </handlers>
-            </root-logger>
+	     </root-logger>
+            <logger category="org.jboss.arquillian.persistence">
+                <level name="INFO"/>
+            </logger>
+            <logger category="org.dbunit">
+                <level name="INFO"/>
+            </logger>
             <formatter name="PATTERN">
                 <pattern-formatter pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] (%t) %s%e%n"/>
             </formatter>

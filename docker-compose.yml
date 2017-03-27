@@ -1,7 +1,15 @@
 version: '3'
+networks:
+  mynetwork:
+    driver: bridge
+
 services:
   web:
+    container_name: web
     image: eap-test
+    hostname: web
+    networks: 
+      - mynetwork
     ports:
       - 8080:8080 
       - 9990:9990
@@ -9,10 +17,14 @@ services:
     depends_on:
       - db
   db:
+    container_name: db
     image: postgres
-    environment: 
+    hostname: db
+    networks: 
+      - mynetwork
+    ports:
+      - 5432:5432 
+    environment:
       - POSTGRES_USER=test_user
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=test_db
-    ports:
-      - 5432:5432 
